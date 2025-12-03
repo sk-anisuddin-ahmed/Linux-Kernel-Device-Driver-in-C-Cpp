@@ -107,10 +107,12 @@ Linux kernel modules can expose tunable parameters to user space. These paramete
 ```c
 static int myint = 0;
 module_param(myint, int, 0644);
+```
 
 ```c
 static unsigned int myuint = 10;
 module_param(myuint, uint, 0644);
+```
 
 ```c
 static long mylong = -5;
