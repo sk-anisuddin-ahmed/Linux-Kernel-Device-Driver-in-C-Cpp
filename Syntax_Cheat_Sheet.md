@@ -218,34 +218,34 @@ close(fd);
 
 In Linux device driver development, these static structures are commonly used to register and manage a character device.
 
-## 📦 `struct class *storage_class`
+## `struct class *storage_class`
 - Represents a **device class** in sysfs.
 - Groups devices of the same type under `/sys/class/`.
 - Used with `class_create()` and `class_destroy()`.
 
-## 📦 `struct device *storage_device`
+## `struct device *storage_device`
 - Represents the actual **device object**.
 - Created with `device_create()`.
 - Appears under `/dev/` as the device file (e.g., `/dev/storage`).
 
-## 🔢 `dev_t storage_dev_number`
+## `dev_t storage_dev_number`
 - Holds the **device number** (major + minor).
 - Allocated with `alloc_chrdev_region()` or `register_chrdev_region()`.
 - Identifies the device uniquely in the kernel.
 
-## ⚙️ `struct cdev storage_cdev`
+## `struct cdev storage_cdev`
 - Represents the **character device structure**.
 - Initialized with `cdev_init()` and added with `cdev_add()`.
 - Links file operations (open, read, write, ioctl) to the device.
 
-## 🛠️ Typical Usage Flow
+## Typical Usage Flow
 1. Allocate a device number (`alloc_chrdev_region` → `storage_dev_number`).
 2. Initialize and add the character device (`cdev_init` → `storage_cdev`).
 3. Create a device class (`class_create` → `storage_class`).
 4. Create the device node (`device_create` → `storage_device`).
 5. Device file appears in `/dev/` for user-space access.
 
-## 📖 Summary
+## Summary
 - **`storage_class`** → groups devices in sysfs  
 - **`storage_device`** → represents the device in `/dev/`  
 - **`storage_dev_number`** → unique identifier (major/minor)  
@@ -360,11 +360,11 @@ filp_close(filp, NULL);
 
 # File Operations in Linux Kernel Driver
 
-## 📌 Overview
+## Overview
 The `struct file_operations` defines how user-space interacts with a character device.  
 Each field points to a function in the driver that handles a specific operation.
 
-## 🔧 Fields in `storage_fops`
+## Fields in `storage_fops`
 
 ```c
 static const struct file_operations storage_fops = {
