@@ -517,3 +517,159 @@ clean:
 ```
 - Cleans kernel build artifacts.
 - Removes user program and temporary files.
+
+# Linux Shell Commands
+
+## Help & shell basics
+man ls                  # Manual page (help) for a command
+help cd                 # Built-in shell help
+type ls                 # How a command is resolved
+which ls                # Path to an executable
+whereis ls              # Locate binary/source/man
+echo "text"             # Print text
+printf "%s\n" "text"    # Safer echo
+history                 # Show command history
+alias ll='ls -la'       # Create a command alias
+unalias ll              # Remove alias
+env                     # Show environment
+export VAR=value        # Set env var (current shell)
+source ~/.bashrc        # Reload shell config
+
+## Navigation & files
+pwd                     # Current directory
+ls -lAh                 # List files (long, all, human)
+cd /path                # Change directory
+cd -                    # Switch to previous directory
+mkdir -p dir/subdir     # Create nested dirs
+touch file.txt          # Create empty file
+cp file1 file2          # Copy file
+mv old new              # Move/rename
+rm file.txt             # Remove file
+rm -rf dir/             # Force remove directory
+ln -s target link       # Symlink
+stat file.txt           # File details
+file file.txt           # Detect file type
+du -sh dir/             # Dir size (summary)
+df -h                   # Disk usage (human)
+find . -name "*.log"    # Find files by name
+grep -r "text" .        # Search text recursively
+sed -n '1,10p' file     # Print lines 1–10
+awk '{print $1}' file   # Print first column
+sort file | uniq -c     # Unique lines with counts
+cut -d, -f2 file.csv    # Extract column 2 (CSV)
+paste f1 f2             # Merge files line-wise
+tr '[:lower:]' '[:upper:]' < f # Transform chars
+wc -l file.txt          # Count lines
+diff a.txt b.txt        # Compare files
+patch < change.diff     # Apply patch
+
+## Viewing & monitoring
+cat file.txt            # Show file
+tac file.txt            # Reverse cat
+less file.txt           # Scroll view
+head -n 20 file.txt     # First 20 lines
+tail -n 50 file.txt     # Last 50 lines
+tail -f log.txt         # Follow updates
+watch -n 2 'df -h'      # Repeat a command
+time ls                 # Measure command time
+date                    # Current date/time
+
+## Processes & system
+uname -a                # System info
+whoami                  # Current user
+id                      # User/group IDs
+top                     # Live processes
+htop                    # Nice top (if installed)
+ps aux                  # All processes
+pgrep nginx             # Find PIDs by name
+kill -9 PID             # Kill process
+pkill -f "pattern"      # Kill by pattern
+killall nginx           # Kill by name
+nice -n 10 cmd          # Set process priority
+renice -n 5 -p PID      # Change priority
+nohup cmd &             # Run immune to hangups
+dmesg -T                # Kernel messages (timestamped)
+uptime                  # System load & uptime
+free -h                 # Memory usage
+
+## Services & logs (systemd)
+systemctl status nginx  # Service status
+systemctl start nginx   # Start service
+systemctl stop nginx    # Stop service
+systemctl enable nginx  # Enable at boot
+journalctl -u nginx     # Logs for a unit
+journalctl -f           # Follow system logs
+
+## Networking
+ip a                    # IP addresses
+ip route                # Routing table
+ping -c 4 example.com   # Connectivity test
+curl -I https://site    # Fetch headers
+wget https://file       # Download file
+ssh user@host           # Remote shell
+scp file user@host:/p   # Secure copy
+rsync -av dir/ host:/p  # Sync directories
+ss -tulpn               # Sockets (like netstat)
+nc -lvkp 9000           # Netcat listen
+traceroute example.com  # Route trace
+dig example.com +short  # DNS lookup
+nslookup example.com    # DNS (alternative)
+
+## Permissions & users
+chmod 755 file          # Permissions (rwxr-xr-x)
+chown user:group file   # Change owner/group
+umask                   # Default permission mask
+adduser newuser         # Add user
+passwd user             # Change password
+sudo cmd                # Run as root
+
+## Archives & compression
+tar -cvf f.tar dir/     # Create tar
+tar -xvf f.tar          # Extract tar
+tar -czvf f.tgz dir/    # Create tar.gz
+tar -xzvf f.tgz         # Extract tar.gz
+gzip file               # Compress
+gunzip file.gz          # Decompress
+zip -r f.zip dir/       # Zip directory
+unzip f.zip             # Unzip
+
+## Package managers
+apt update              # Debian/Ubuntu: update index
+apt upgrade             # Upgrade packages
+apt install pkg         # Install
+apt remove pkg          # Remove
+dnf install pkg         # Fedora/RHEL
+yum install pkg         # Older RHEL/CentOS
+pacman -S pkg           # Arch
+snap install pkg        # Snap packages
+
+## Editors & shells
+nano file.txt           # Simple editor
+vim file.txt            # Powerful editor
+code .                  # VS Code (if installed)
+bash                    # Bash shell
+zsh                     # Zsh shell
+
+## Scheduling & jobs
+crontab -e              # Edit user cron
+crontab -l              # List cron jobs
+at 14:30                # Schedule one-off job
+bg                      # Send job to background
+fg                      # Bring job to foreground
+jobs                    # List shell jobs
+
+## Pipelines & tools
+xargs -n1 echo          # Build commands from input
+tee out.txt             # Split output to file and stdout
+yes | cmd               # Auto-confirm
+printf "%s\n" {1..5} | parallel echo {}  # GNU parallel
+
+## Git & Docker (common)
+git clone URL           # Clone repo
+git status              # Repo status
+git add .               # Stage changes
+git commit -m "msg"     # Commit
+git push                # Push changes
+docker ps               # Running containers
+docker logs -f NAME     # Follow container logs
+docker exec -it NAME sh # Shell into container
