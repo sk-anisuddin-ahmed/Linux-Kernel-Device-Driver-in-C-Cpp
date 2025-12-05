@@ -1,16 +1,18 @@
 # 🧪 Linux Kernel Device Driver in C/C++
 
-A personal exploration into Linux kernel module development using C/C++. This repository documents my journey from scratch—starting with basic character drivers and progressively diving into interrupt handling, memory-mapped I/O, and kernel-space debugging.
+A personal exploration into Linux kernel module development - device driver development. 
+This repository documents my journey from scratch—starting with basic character drivers and 
+progressively diving into interrupt handling, memory-mapped I/O, and kernel-space debugging.
 
 ---
 
 ## 📌 Goals
 
-- Understand kernel module lifecycle (`insmod`, `rmmod`, `modinfo`)
+- Understand kernel module lifecycle (`insmod`, `rmmod`, `modinfo`, `modprobe`)
 - Build a simple character device driver
-- Log kernel messages using `printk`
+- Log kernel messages using `printk` `pr_info`
 - Compile modules with a reproducible `Makefile`
-- Test modules in a minimal WSL environment
+- Test modules in a minimal Virtual environment - (Multipass, WSL)
 
 ---
 
@@ -20,7 +22,7 @@ A personal exploration into Linux kernel module development using C/C++. This re
 
 - Linux system (Ubuntu, Arch or WSL2)
 - Kernel headers installed (`linux-headers-$(uname -r)`)
-- Basic C/C++ compiler (`gcc`, `make`)
+- Basic C compiler (`gcc`, `make`)
 
 ### Build & Load
 
@@ -29,3 +31,4 @@ make           				# Compile the kernel module
 sudo insmod my_driver.ko   	# Insert module
 dmesg | tail   				# Check kernel logs
 sudo rmmod my_driver       	# Remove module
+```
